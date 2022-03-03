@@ -1,24 +1,63 @@
-import React, {Fragment} from 'react';
-import {View, Text} from 'react-native';
+import React from 'react';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TextInput,
+  Platform,
+  TouchableOpacity,
+} from 'react-native';
 
-export function App() {
+export function Home() {
   return (
-    <>
-      <View
-        style={{
-          flex: 1,
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}>
-        <Text> Leticia Rodrigues </Text>
-      </View>
-      <Text
-        style={{
-          alignSelf: 'center',
-          marginBottom: 20,
-        }}>
-        Ignite
-      </Text>
-    </>
+    <View style={styles.container}>
+      <Text style={styles.title}> Leticia Rodrigues </Text>
+
+      <TextInput
+        style={styles.input}
+        placeholder="Skills"
+        placeholderTextColor="#555"
+      />
+
+      <TouchableOpacity style={styles.button} activeOpacity={0.3}>
+        <Text style={styles.buttonText}>Add</Text>
+      </TouchableOpacity>
+
+      <Text style={[styles.title, {marginTop: 50}]}>My Skills</Text>
+    </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#121015',
+    paddingHorizontal: 20,
+    paddingVertical: 70,
+  },
+  title: {
+    color: '#FFF',
+    fontSize: 24,
+    fontWeight: 'bold',
+  },
+  input: {
+    backgroundColor: '#1F1E25',
+    color: '#FFF',
+    fontSize: 18,
+    padding: Platform.OS === 'ios' ? 15 : 10,
+    marginTop: 30,
+    borderRadius: 7,
+    marginBottom: 20,
+  },
+  button: {
+    backgroundColor: '#A370f7',
+    padding: 15,
+    borderRadius: 7,
+    alignItems: 'center',
+  },
+  buttonText: {
+    color: '#FFF',
+    fontSize: 17,
+    fontWeight: 'bold',
+  },
+});
