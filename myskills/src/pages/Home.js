@@ -1,7 +1,15 @@
 import React, {useState} from 'react';
-import {View, Text, StyleSheet, TextInput, Platform} from 'react-native';
-import {Button} from './components/Button';
-import {SkillCard} from './components/SkillCard';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TextInput,
+  Platform,
+  FlatList,
+} from 'react-native';
+import {keyExtractor} from 'react-native/Libraries/Lists/VirtualizeUtils';
+import {Button} from '../components/Button';
+import {SkillCard} from '../components/SkillCard';
 
 export function Home() {
   const [newSkill, setNewSkill] = useState('');
@@ -12,7 +20,7 @@ export function Home() {
   }
   return (
     <View style={styles.container}>
-      <Text style={styles.title}> Leticia Rodrigues </Text>
+      <Text style={styles.title}> Welcome, Leticia Rodrigues </Text>
 
       <TextInput
         style={styles.input}
@@ -20,11 +28,15 @@ export function Home() {
         placeholderTextColor="#555"
         onChangeText={setNewSkill}
       />
-      <Button></Button>
+
+      <Button onPress={handleAddNewSkill} />
+
       <Text style={[styles.title, {marginVertical: 50}]}>My Skills</Text>
-      {mySkills.map(skill => (
-        <SkillCard />
-      ))}
+      <FlatList
+        data={mySkills}
+        keyExtractor={item => item}
+        renderItem={({item}) => <SkillCard skill={item} />}
+      />
     </View>
   );
 }
